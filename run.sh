@@ -1,5 +1,6 @@
 #!/bin/bash
 
+bse="$1"; shift
 dc="$1"; shift
 
 retries=
@@ -9,14 +10,15 @@ for i in "$@"; do retries="$retries -retry-join=$i \\"; done
 retries=${retries%"\\"}
 
 cmd="consul agent \
--bootstrap-expect=3 \
 -server=true \
--data-dir=\"/data\" \
+-data-dir=\"/consul/data\" \
 -syslog \
 -retry-interval=\"15s\" \
 -log-level=\"DEBUG\" \
+-bootstrap-expect=$bse \
 -dc=$dc \
 $retries"
 
 $cmd
+
 
