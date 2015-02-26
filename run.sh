@@ -10,6 +10,7 @@ for i in "$@"; do retries="$retries -retry-join=$i \\"; done
 retries=${retries%"\\"}
 
 cmd="consul agent \
+-config-dir=/consul/config \
 -server=true \
 -data-dir=\"/consul/data\" \
 -syslog \

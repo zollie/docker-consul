@@ -16,7 +16,9 @@ RUN apk-install -t bash
 EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 53/udp
 
 RUN mkdir -p /consul/data
-VOLUME ["/consul/data"]
+ADD config /consul/
+
+VOLUME ["/consul"]
 
 ENV SHELL /bin/bash
 
